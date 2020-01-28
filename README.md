@@ -12,4 +12,4 @@ credentials and links:
 
 admin can create users.
 
-localStorage implementation is pending, to save user details and ticket details
+pending - admin to close ticket

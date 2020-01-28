@@ -1,6 +1,6 @@
 import { USER_AUTH, CREATE_USER } from "../Redux/userAction";
 const initialState = {
-  userCredentials: [{ username: "mihir", password: "kumar" }],
+  userCredentials: JSON.parse(localStorage.getItem("users")),
   userIsLoggedIn: false,
   currentUser: ""
 };
@@ -34,6 +34,11 @@ const userReducer = (state = initialState, action) => {
         alert("!! User already present, please enter another user");
         return state;
       }
+      localStorage.setItem(
+        "users",
+        JSON.stringify([...state.userCredentials, { ...action.payload }])
+      );
+      alert("New user created successfully");
       return {
         ...state,
         userCredentials: [...state.userCredentials, { ...action.payload }]

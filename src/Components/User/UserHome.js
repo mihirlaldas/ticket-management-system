@@ -10,7 +10,15 @@ export class UserHome extends Component {
       owner: this.props.currentUser
     };
   }
-
+  componentDidMount() {
+    if (localStorage.getItem("users") == null)
+      localStorage.setItem(
+        "users",
+        JSON.stringify([{ username: "mihir", password: "kumar" }])
+      );
+    if (localStorage.getItem("tickets") == null)
+      localStorage.setItem("tickets", JSON.stringify([]));
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.raiseTicket(
@@ -25,7 +33,9 @@ export class UserHome extends Component {
   };
   render() {
     console.log(this.props.tickets);
-
+    let result = this.props.tickets.filter(
+      ele => ele.owner === this.state.owner && ele.isOpen
+    );
     return (
       <div>
         <h1>Hello Dear {this.state.owner}</h1>
@@ -67,8 +77,7 @@ export class UserHome extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.tickets.map(ele => {
-              // if (ele.owner === this.state.owner && ele.isOpen)
+            {result.map(ele => {
               return (
                 <tr key={ele.owner + ele.name}>
                   <td>{ele.name}</td>
@@ -79,7 +88,6 @@ export class UserHome extends Component {
             })}
           </tbody>
         </table>
-        {console.log(this.props.tickets)}
       </div>
     );
   }

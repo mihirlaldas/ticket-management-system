@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createUser } from "../Redux/userAction";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 export class CreateUser extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,10 @@ export class CreateUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createUser(this.state.username, this.state.password);
+    this.setState({
+      username: "",
+      password: ""
+    });
   };
   render() {
     return (
@@ -48,9 +53,12 @@ export class CreateUser extends Component {
             value={this.state.password}
           />
           <button type="submit" className="btn btn-primary p-2 m-2 btn-block">
-            Login
+            Create New User
           </button>
         </form>
+        <Link to="/admin">
+          <button className="btn btn-primary">Admin Page</button>
+        </Link>
       </div>
     );
   }

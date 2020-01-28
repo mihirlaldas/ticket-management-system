@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Admin from "../Admin/Home";
-import Support from "../Support/Home";
+import NotFound from "../Common/NotFound";
 import User from "../User/UserHome";
 import { connect } from "react-redux";
 import Auth from "../Common/Auth";
@@ -30,7 +30,7 @@ function Routes(props) {
             props.adminIsLoggedIn ? <CreateUser /> : <Auth type="admin" />
           }
         />
-        <Route path="/support" render={() => <Support />} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );
