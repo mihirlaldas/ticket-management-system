@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Admin from "../Admin/Home";
+import Home from "../Admin/Home";
 import NotFound from "../Common/NotFound";
-import User from "../User/UserHome";
+import UserHome from "../User/UserHome";
 import { connect } from "react-redux";
 import Auth from "../Common/Auth";
 import CreateUser from "../Admin/CreateUser";
@@ -15,13 +15,13 @@ function Routes(props) {
           path="/"
           exact
           render={() =>
-            props.userIsLoggedIn ? <User /> : <Auth type="user" />
+            props.userIsLoggedIn ? <UserHome /> : <Auth type="user" />
           }
         />
         <Route
           path="/admin"
           render={() =>
-            props.adminIsLoggedIn ? <Admin /> : <Auth type="admin" />
+            props.adminIsLoggedIn ? <Home /> : <Auth type="admin" />
           }
         />
         <Route
