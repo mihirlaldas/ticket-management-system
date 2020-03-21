@@ -1,6 +1,6 @@
 import { USER_AUTH, CREATE_USER } from "../Redux/userAction";
 const initialState = {
-  userCredentials: JSON.parse(localStorage.getItem("users")),
+  userCredentials: JSON.parse(localStorage.getItem("users")) || [],
   userIsLoggedIn: false,
   currentUser: ""
 };
@@ -18,6 +18,7 @@ const userReducer = (state = initialState, action) => {
             userIsLoggedIn: true,
             currentUser: action.payload.username
           };
+      if (!state.userIsLoggedIn) alert("Invalid username or password");
       return state;
       break;
     case CREATE_USER:

@@ -8,7 +8,7 @@ credentials and links:
 
 /admin - username:admin,password:admin
 
-/ - username: mihir, password: kumar
+/ - username: mihir, password: mihir
 
 admin can create users.
 
